@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
-import {Link, IndexLink} from 'react-router';
+import {IndexLink} from 'react-router';
+import NavLink from '../components/NavLink'
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -25,9 +26,9 @@ class App extends React.Component {
                         </div>
 
                         <ul className="nav navbar-nav navbar-right">
-                            <li>
-                                <Link to="/login">Đăng nhập</Link>
-                            </li>
+                            <NavLink to="/login" >
+                                Đăng nhập
+                            </NavLink>
                         </ul>
 
                     </div>

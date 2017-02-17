@@ -1,5 +1,20 @@
 <?php
 
+
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    $http_origin = $_SERVER['HTTP_ORIGIN'];
+    if ($http_origin == "http://localhost:3000" || $http_origin == "http://kee.app") {
+        header("Access-Control-Allow-Origin: $http_origin");
+    }
+} else {
+    $http_origin = "http://kee.app";
+    header("Access-Control-Allow-Origin: $http_origin");
+}
+//header('Access-Control-Allow-Origin: http://localhost:3000');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
@@ -19,7 +34,7 @@
 |
 */
 
-require __DIR__.'/../bootstrap/autoload.php';
+require __DIR__ . '/../bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +48,7 @@ require __DIR__.'/../bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------

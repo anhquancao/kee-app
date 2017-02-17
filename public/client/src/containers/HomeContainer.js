@@ -10,13 +10,15 @@ class HomeContainer extends Component {
 
     render() {
         return (
-            <h1>Home page</h1>
+            <div className="container">
+                <h1>Home page</h1>
+            </div>
         );
     }
 }
 
 HomeContainer.propTypes = {
-    //myProp: PropTypes.string.isRequired
+    myProp: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state) {

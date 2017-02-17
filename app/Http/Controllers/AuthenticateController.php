@@ -29,7 +29,8 @@ class AuthenticateController extends Controller
         return response()->json([
             'token' => $token,
             'user' => [
-                'name' => $user->name
+                'name' => $user->name,
+                'email' => $user->email
             ]
         ]);
     }
