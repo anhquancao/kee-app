@@ -21,7 +21,8 @@ export default class NavLink extends Component {
 }
 
 NavLink.propTypes = {
-    to: PropTypes.string.isRequired
+    to: PropTypes.string.isRequired,
+    children: PropTypes.node
 };
 NavLink.contextTypes = {
     router: PropTypes.object

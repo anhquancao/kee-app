@@ -42,6 +42,12 @@ class LoginContainer extends Component {
                                            value={this.props.user.password} className="form-control"
                                            placeholder="Mật khẩu"/>
                                 </div>
+                                {this.props.error && (
+                                    <div className="alert alert-danger">
+                                        {this.props.error}
+                                    </div>
+                                )}
+
                                 {this.props.isProcessing ? <Loading/> :
                                     <button type="submit" className="btn btn-default">Đăng nhập</button>}
                             </div>
@@ -57,12 +63,14 @@ class LoginContainer extends Component {
 LoginContainer.propTypes = {
     authActions: PropTypes.object.isRequired,
     user: PropTypes.object,
+    error: PropTypes.string.isRequired,
     isProcessing: PropTypes.bool
 };
 
 function mapStateToProps(state) {
     return {
         user: state.auth.user,
+        error: state.auth.error,
         isProcessing: state.auth.isProcessing
     };
 }

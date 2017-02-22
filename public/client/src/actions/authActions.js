@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import authApi from '../apis/authApi';
+import {browserHistory} from 'react-router';
 
 export function updateLoginForm(user) {
     return function (dispatch) {
@@ -19,15 +20,19 @@ export function login(user) {
                     value: res.data.token,
                     expire: new Date(new Date().getTime() + (6 * 24 * 60 * 60 * 1000))
                 };
-                localStorage.setItem("kee_app_token", JSON.stringify(token));
+                localforage.setItem("kee_app_token", token);
                 dispatch({
                     type: types.LOG_IN_SUCCESS,
                     user: res.data.user
                 });
+                browserHistory.push('/dashboard');
             })
             .catch(e => {
                 const error = e.response.data;
-                console.log(error);
+                dispatch({
+                    type: types.LOG_IN_ERROR,
+                    error: error.error
+                });
             });
 
     }
