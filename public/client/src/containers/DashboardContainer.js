@@ -18,10 +18,10 @@ class DashboardContainer extends Component {
 }
 
 DashboardContainer.propTypes = {
-    //myProp: PropTypes.string.isRequired
+    myProp: PropTypes.string
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         state: state
     };

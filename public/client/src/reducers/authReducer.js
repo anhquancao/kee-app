@@ -12,12 +12,16 @@ export default function authReducer(state = initialState.auth, action) {
                 isProcessing: true,
                 error: ''
             });
+        case types.LOG_OUT:
+            return objectAssign({}, state, {isLoggedIn: false});
+
         case types.LOG_IN_SUCCESS:
             return objectAssign(
                 {}, state, {
                     isLoggedIn: true,
                     isProcessing: false,
                     error: '',
+                    token: action.token,
                     user: objectAssign({}, action.user, {password: ""})
                 }
             );

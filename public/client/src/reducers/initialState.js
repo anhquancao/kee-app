@@ -4,6 +4,7 @@ export default {
             email: "",
             password: ""
         },
+        token: "",
         isLoggedIn: false,
         error: "",
         isProcessing: false

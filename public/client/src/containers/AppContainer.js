@@ -2,11 +2,18 @@ import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import NavLink from '../components/NavLink';
-import {IndexLink} from 'react-router';
+import {IndexLink, browserHistory, Link} from 'react-router';
+import * as authActions from '../actions/authActions';
 
 class AppContainer extends Component {
     constructor(props, context) {
         super(props, context);
+        this.logOut = this.logOut.bind(this);
+    }
+
+    logOut() {
+        this.props.authActions.logOut();
+        browserHistory.push("/");
     }
 
     render() {
@@ -30,9 +37,17 @@ class AppContainer extends Component {
                         <ul className="nav navbar-nav navbar-right">
                             {
                                 this.props.isLoggedIn ?
-                                    <li>
-                                        <p className="navbar-text">{this.props.user.name}</p>
+                                    <li className="dropdown">
+                                        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
+                                           aria-haspopup="true" aria-expanded="false">{this.props.user.name} <span
+                                            className="caret"></span></a>
+                                        <ul className="dropdown-menu">
+                                            <li><Link to="/dashboard">Quản lý</Link></li>
+                                            <li role="separator" className="divider"></li>
+                                            <li><a href="#" onClick={this.logOut}>Đăng xuất</a></li>
+                                        </ul>
                                     </li>
+
                                     : (
                                         <NavLink to="/login">
                                             Đăng nhập
@@ -52,7 +67,8 @@ class AppContainer extends Component {
 AppContainer.propTypes = {
     user: PropTypes.object,
     isLoggedIn: PropTypes.bool,
-    children: PropTypes.element
+    children: PropTypes.element,
+    authActions: PropTypes.object
 };
 
 function mapStateToProps(state) {
@@ -64,7 +80,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({}, dispatch)
+        authActions: bindActionCreators(authActions, dispatch)
     };
 }
 

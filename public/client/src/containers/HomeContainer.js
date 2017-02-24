@@ -2,6 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 // Import actions here!!
+import * as authActions from '../actions/authActions';
 
 class HomeContainer extends Component {
     constructor(props, context) {
@@ -18,7 +19,7 @@ class HomeContainer extends Component {
 }
 
 HomeContainer.propTypes = {
-    myProp: PropTypes.string.isRequired
+    authActions: PropTypes.object
 };
 
 function mapStateToProps(state) {
@@ -29,7 +30,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({}, dispatch)
+        actions: bindActionCreators(authActions, dispatch)
     };
 }
 
