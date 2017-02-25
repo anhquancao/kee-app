@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {Link} from 'react-router';
 import Loading from '../components/Loading';
 // Import actions here!!
 import * as authActions from '../actions/authActions';
@@ -47,6 +48,10 @@ class LoginContainer extends Component {
                                         {this.props.error}
                                     </div>
                                 )}
+                                <div className="alert alert-info">
+                                    Bạn chưa có tài khoản?
+                                    <Link to="/register"> Bấm vào đây để tại tài khoản.</Link>
+                                </div>
 
                                 {this.props.isProcessing ? <Loading/> :
                                     <button type="submit" className="btn btn-default">Đăng nhập</button>}
