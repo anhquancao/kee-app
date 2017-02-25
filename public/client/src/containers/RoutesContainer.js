@@ -5,6 +5,7 @@ import  {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import AppContainer from './AppContainer';
 import HomeContainer from './HomeContainer';
 import LoginContainer from './LoginContainer';
+import RegisterContainer from './RegisterContainer';
 import DashboardContainer from './DashboardContainer';
 import NotFoundPage from '../components/NotFoundPage';
 // Import actions here!!
@@ -23,6 +24,7 @@ class RoutesContainer extends Component {
                 <IndexRoute component={HomeContainer}/>
                 <Route path="/login" component={LoginContainer} onEnter={this.authNotAccess}/>
                 <Route path="/dashboard" component={DashboardContainer} onEnter={this.requireAuth}/>
+                <Route path="/register" component={RegisterContainer}/>
                 <Route path="*" component={NotFoundPage}/>
             </Route>
         );
@@ -45,7 +47,7 @@ class RoutesContainer extends Component {
                     that.props.authActions.loadUserFromToken(token.user, token.value);
                     if (that.firstLocation) {
                         browserHistory.push(that.firstLocation);
-                        that.firstLocation="";
+                        that.firstLocation = "";
                     }
                 } else {
                     browserHistory.push("/");

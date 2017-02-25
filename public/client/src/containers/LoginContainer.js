@@ -29,6 +29,7 @@ class LoginContainer extends Component {
             <div className="container">
                 <div className="col-sm-6 col-sm-offset-3">
                     <div className="panel panel-default">
+                        <div className="panel-heading">Đăng nhập</div>
                         <form onSubmit={this.onSubmit}>
                             <div className="panel-body">
                                 <div className="form-group">
@@ -43,18 +44,23 @@ class LoginContainer extends Component {
                                            value={this.props.user.password} className="form-control"
                                            placeholder="Mật khẩu"/>
                                 </div>
-                                {this.props.error && (
-                                    <div className="alert alert-danger">
-                                        {this.props.error}
-                                    </div>
-                                )}
+                                {
+                                    this.props.error && (
+                                        <div className="alert alert-danger">
+                                            {this.props.error}
+                                        </div>
+                                    )}
+
+                                {
+                                    this.props.isProcessing ? <Loading/> :
+                                        <div className="form-group">
+                                            <button type="submit" className="btn btn-default">Đăng nhập</button>
+                                        </div>
+                                }
                                 <div className="alert alert-info">
                                     Bạn chưa có tài khoản?
                                     <Link to="/register"> Bấm vào đây để tại tài khoản.</Link>
                                 </div>
-
-                                {this.props.isProcessing ? <Loading/> :
-                                    <button type="submit" className="btn btn-default">Đăng nhập</button>}
                             </div>
 
                         </form>
