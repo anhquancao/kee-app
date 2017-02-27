@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterUserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -33,5 +35,23 @@ class AuthenticateController extends Controller
                 'email' => $user->email
             ]
         ]);
+    }
+
+    public function register(RegisterUserRequest $request)
+    {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $token = JWTAuth::fromUser($user);
+        return [
+            'token' => $token,
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email
+            ]
+        ];
     }
 }

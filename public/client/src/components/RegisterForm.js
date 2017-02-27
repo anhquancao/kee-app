@@ -23,7 +23,7 @@ class RegisterForm extends Component {
                            label="Mật khẩu"/>
                     <Field type="password"
                            component={RenderField}
-                           name="passwordConfirmation"
+                           name="password_confirmation"
                            label="Xác nhận mật khẩu"/>
 
                     {
@@ -55,7 +55,7 @@ const validate = values => {
     } else if (!Validator.validatePassword(errors.password)) {
         errors.password = 'Mật khẩu cần có độ dài ít nhất 8 kí tự bao gồm cả Số và Chữ';
     } else if (values.password !== values.passwordConfirmation) {
-        errors.passwordConfirmation = 'Mật khẩu và xác nhận chưa khớp';
+        errors.password_confirmation = 'Mật khẩu và xác nhận chưa khớp';
     }
     return errors;
 };
