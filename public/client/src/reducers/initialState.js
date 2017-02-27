@@ -7,7 +7,8 @@ export default {
         token: "",
         isLoggedIn: false,
         error: "",
-        isProcessing: false
+        isProcessing: false,
+        registerError: ""
     },
 
     fuelSavings: {

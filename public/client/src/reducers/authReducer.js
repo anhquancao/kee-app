@@ -5,6 +5,10 @@ import initialState from './initialState';
 export default function authReducer(state = initialState.auth, action) {
 
     switch (action.type) {
+        case types.REGISTERING:
+            return objectAssign({}, state, {isProcessing: true});
+        case types.REGISTER_ERROR:
+            return objectAssign({}, state, {registerError: action.registerError, isProcessing: false});
         case types.UPDATE_LOGIN_FORM:
             return objectAssign({}, state, {user: action.user});
         case types.LOGGING_IN:

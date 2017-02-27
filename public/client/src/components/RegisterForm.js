@@ -2,6 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import Validator from '../utils/Validator';
 import RenderField from './RenderField';
+import Loading from '../components/Loading';
 
 class RegisterForm extends Component {
 
@@ -52,9 +53,9 @@ const validate = values => {
     }
     if (!values.password || values.password.trim() === '') {
         errors.password = 'Bạn vui lòng nhập password';
-    } else if (!Validator.validatePassword(errors.password)) {
+    } else if (!Validator.validatePassword(values.password)) {
         errors.password = 'Mật khẩu cần có độ dài ít nhất 8 kí tự bao gồm cả Số và Chữ';
-    } else if (values.password !== values.passwordConfirmation) {
+    } else if (values.password !== values.password_confirmation) {
         errors.password_confirmation = 'Mật khẩu và xác nhận chưa khớp';
     }
     return errors;

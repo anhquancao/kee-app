@@ -7,3 +7,6 @@ export const LOGGING_IN = 'LOGGING_IN';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_IN_ERROR = 'LOG_IN_ERROR';
 export const LOG_OUT = "LOG_OUT";
+export const REGISTERING = 'REGISTERING';
+// export const REGISTERED = 'REGISTERED';
+export const REGISTER_ERROR = 'REGISTER_ERROR';

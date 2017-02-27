@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import RegisterForm from '../components/RegisterForm';
 // Import actions here!!
+import * as authActions from '../actions/authActions';
 
 class RegisterContainer extends Component {
     constructor(props, context) {
@@ -11,7 +12,8 @@ class RegisterContainer extends Component {
     }
 
     handleSubmit(values) {
-        console.log(values);
+        // console.log(values);
+        this.props.authActions.register(values);
     }
 
     render() {
@@ -20,7 +22,10 @@ class RegisterContainer extends Component {
                 <div className="col-sm-6 col-sm-offset-3">
                     <div className="panel panel-default">
                         <div className="panel-heading">Đăng kí</div>
-                        <RegisterForm isProcessing={this.props.isProcessing} onSubmit={this.handleSubmit}/>
+                        {this.props.registerError && <div className="alert alert-danger">{this.props.registerError}</div>}
+                        <RegisterForm
+                            isProcessing={this.props.isProcessing}
+                            onSubmit={this.handleSubmit}/>
                     </div>
                 </div>
             </div>
@@ -29,18 +34,21 @@ class RegisterContainer extends Component {
 }
 
 RegisterContainer.propTypes = {
-    isProcessing: PropTypes.bool.isRequired
+    isProcessing: PropTypes.bool.isRequired,
+    authActions: PropTypes.object.isRequired,
+    registerError: PropTypes.string
 };
 
 function mapStateToProps(state) {
     return {
-        isProcessing: state.auth.isProcessing
+        isProcessing: state.auth.isProcessing,
+        registerError: state.auth.registerError
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({}, dispatch)
+        authActions: bindActionCreators(authActions, dispatch)
     };
 }
 
