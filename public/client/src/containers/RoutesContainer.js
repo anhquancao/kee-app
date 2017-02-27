@@ -10,6 +10,7 @@ import DashboardContainer from './DashboardContainer';
 import NotFoundPage from '../components/NotFoundPage';
 // Import actions here!!
 import * as authActions from '../actions/authActions';
+import authApi from '../apis/authApi';
 
 class RoutesContainer extends Component {
     constructor(props, context) {
@@ -45,6 +46,14 @@ class RoutesContainer extends Component {
 
                 if (expire.getTime() > today.getTime()) {
                     that.props.authActions.loadUserFromToken(token.user, token.value);
+
+                    authApi.refreshToken(token.value)
+                        .then(res => {
+                            token.value = res.data.token;
+                            token.expire = new Date(new Date().getTime() + (6 * 24 * 60 * 60 * 1000))
+                            localforage.setItem("kee_app_token", token);
+                        });
+
                     if (that.firstLocation) {
                         browserHistory.push(that.firstLocation);
                         that.firstLocation = "";

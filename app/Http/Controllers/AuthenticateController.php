@@ -37,6 +37,12 @@ class AuthenticateController extends Controller
         ]);
     }
 
+    public function refreshToken()
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        return ['token' => JWTAuth::fromUser($user)];
+    }
+
     public function register(RegisterUserRequest $request)
     {
         $user = new User();

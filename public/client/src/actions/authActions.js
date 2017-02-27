@@ -13,6 +13,7 @@ export function loadUserFromToken(user, token) {
     };
 }
 
+
 export function logOut() {
     return function (dispatch) {
         dispatch({

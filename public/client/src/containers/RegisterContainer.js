@@ -5,6 +5,7 @@ import RegisterForm from '../components/RegisterForm';
 // Import actions here!!
 import * as authActions from '../actions/authActions';
 
+
 class RegisterContainer extends Component {
     constructor(props, context) {
         super(props, context);
@@ -22,7 +23,8 @@ class RegisterContainer extends Component {
                 <div className="col-sm-6 col-sm-offset-3">
                     <div className="panel panel-default">
                         <div className="panel-heading">Đăng kí</div>
-                        {this.props.registerError && <div className="alert alert-danger">{this.props.registerError}</div>}
+                        {this.props.registerError &&
+                        <div className="alert alert-danger">{this.props.registerError}</div>}
                         <RegisterForm
                             isProcessing={this.props.isProcessing}
                             onSubmit={this.handleSubmit}/>

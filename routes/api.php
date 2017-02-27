@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login',"AuthenticateController@login");
-Route::post('/register',"AuthenticateController@register");
+Route::post('/login', "AuthenticateController@login");
+Route::post('/register', "AuthenticateController@register");
+Route::get('/refresh-token', "AuthenticateController@refreshToken")->middleware('jwt.auth');
