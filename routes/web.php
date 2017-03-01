@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/', "PublicController@reactIndex");
+Route::get('/dashboard', "PublicController@reactIndex");
+Route::get('/login', "PublicController@reactIndex");
+Route::get('/logout', "PublicController@reactIndex");
+Route::get('/register', "PublicController@reactIndex");
