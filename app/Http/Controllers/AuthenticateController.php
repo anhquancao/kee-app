@@ -45,13 +45,14 @@ class AuthenticateController extends Controller
 
     public function register(RegisterUserRequest $request)
     {
-        $user = new User();
         $user = User::where('email', $request->email)->first();
         if ($user) {
             return [
                 "status" => 0,
                 "message" => "Email này đã có người sử dụng."
             ];
+        } else {
+            $user = new User();
         }
         $user->name = $request->name;
         $user->email = $request->email;

@@ -3,7 +3,10 @@
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {
     $http_origin = $_SERVER['HTTP_ORIGIN'];
-    if ($http_origin == "http://localhost:3000" || $http_origin == "http://kee.app") {
+    if ($http_origin == "http://localhost:3000" ||
+        $http_origin == "http://kee.app"
+        || $http_origin == "http://ec2-52-76-123-135.ap-southeast-1.compute.amazonaws.com"
+    ) {
         header("Access-Control-Allow-Origin: $http_origin");
     }
 } else {
