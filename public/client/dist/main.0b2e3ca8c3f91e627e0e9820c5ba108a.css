@@ -1,0 +1,2 @@
+.loader{display:inline-block;border:5px solid #e1e1e1;border-top:5px solid #3498db;border-radius:50%;width:30px;height:30px;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}body{padding-top:70px}
+/*# sourceMappingURL=main.0b2e3ca8c3f91e627e0e9820c5ba108a.css.map*/
